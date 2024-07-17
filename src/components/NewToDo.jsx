@@ -1,7 +1,7 @@
 import { useState } from "react";
 import classes from "./NewToDo.module.css";
 
-function NewToDo({ onClose }) {
+function NewToDo({ onClose, onAddPost }) {
   const [taskToDo, setTaskToDo] = useState("");
   const [taskDay, setTaskDay] = useState("");
 
@@ -16,19 +16,19 @@ function NewToDo({ onClose }) {
   function submitHandler(event) {
     event.preventDefault();
     const postData = { day: taskDay, task: taskToDo };
-    console.log(postData);
+    onAddPost(postData);
     onClose();
   }
 
   return (
     <form className={classes.form} onSubmit={submitHandler}>
       <p>
-        <label htmlFor="body">Text</label>
-        <textarea id="body" required rows={3} onChange={taskToDoHandler} />
+        <label htmlFor="task">Task</label>
+        <textarea id="task" required rows={3} onChange={taskToDoHandler} />
       </p>
       <p>
-        <label htmlFor="name">Your name</label>
-        <input type="text" id="name" required onChange={taskDayHandler} />
+        <label htmlFor="day">Day</label>
+        <input type="text" id="day" required onChange={taskDayHandler} />
       </p>
       <p className={classes.actions}>
         <button type="button" onClick={onClose}>
