@@ -1,5 +1,6 @@
 import { MdPostAdd, MdMessage } from "react-icons/md";
 import classes from "./Header.module.css";
+
 function Header({ onCreatePost }) {
   return (
     <header className={classes.header}>

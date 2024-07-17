@@ -23,12 +23,12 @@ function NewToDo({ onClose, onAddPost }) {
   return (
     <form className={classes.form} onSubmit={submitHandler}>
       <p>
-        <label htmlFor="task">Task</label>
-        <textarea id="task" required rows={3} onChange={taskToDoHandler} />
-      </p>
-      <p>
         <label htmlFor="day">Day</label>
         <input type="text" id="day" required onChange={taskDayHandler} />
+      </p>
+      <p>
+        <label htmlFor="task">Task</label>
+        <textarea id="task" required rows={3} onChange={taskToDoHandler} />
       </p>
       <p className={classes.actions}>
         <button type="button" onClick={onClose}>
