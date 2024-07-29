@@ -8,6 +8,13 @@ function ToDoList({ isPosting, onStopPosting }) {
   const [posts, setPosts] = useState([]);
 
   function addPostHandler(postData) {
+    fetch("http://localhost:8080/posts", {
+      method: "POST",
+      body: JSON.stringify(postData),
+      headers: {
+        "content-Type": "application/json",
+      },
+    });
     setPosts((existingPost) => [postData, ...existingPost]);
   }
 
