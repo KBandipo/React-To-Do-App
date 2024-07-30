@@ -1,5 +1,6 @@
 import { useState } from "react";
 import classes from "./NewToDo.module.css";
+import Modal from "../components/Modal";
 
 function NewToDo({ onClose, onAddPost }) {
   const [taskToDo, setTaskToDo] = useState("");
@@ -21,22 +22,24 @@ function NewToDo({ onClose, onAddPost }) {
   }
 
   return (
-    <form className={classes.form} onSubmit={submitHandler}>
-      <p>
-        <label htmlFor="day">Day</label>
-        <input type="text" id="day" required onChange={taskDayHandler} />
-      </p>
-      <p>
-        <label htmlFor="task">Task</label>
-        <textarea id="task" required rows={3} onChange={taskToDoHandler} />
-      </p>
-      <p className={classes.actions}>
-        <button type="button" onClick={onClose}>
-          Cancel
-        </button>
-        <button>Submit</button>
-      </p>
-    </form>
+    <Modal>
+      <form className={classes.form} onSubmit={submitHandler}>
+        <p>
+          <label htmlFor="day">Day</label>
+          <input type="text" id="day" required onChange={taskDayHandler} />
+        </p>
+        <p>
+          <label htmlFor="task">Task</label>
+          <textarea id="task" required rows={3} onChange={taskToDoHandler} />
+        </p>
+        <p className={classes.actions}>
+          <button type="button" onClick={onClose}>
+            Cancel
+          </button>
+          <button>Submit</button>
+        </p>
+      </form>
+    </Modal>
   );
 }
 
