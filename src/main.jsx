@@ -3,16 +3,16 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import "./index.css";
-import App from "./App.jsx";
-import NewToDo from "./components/NewToDo.jsx";
+import NewToDo from "./routers/NewToDo.jsx";
 import RootLayout from "./routers/RootLayout.jsx";
+import Posts from "./routers/Posts.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
     children: [
-      { path: "/", element: <App /> },
+      { path: "/", element: <Posts /> },
       { path: "/create-todo", element: <NewToDo /> },
     ],
   },
