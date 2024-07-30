@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Header from "./components/Header";
-import ToDoList from "./components/ToDoList";
+import Header from "../components/Header";
+import ToDoList from "../components/ToDoList";
 
 function App() {
   const [modalIsVisible, setModalIsVisible] = useState(false);
