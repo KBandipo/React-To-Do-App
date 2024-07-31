@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import NewToDo from "./routers/NewToDo.jsx";
 import RootLayout from "./routers/RootLayout.jsx";
-import Posts from "./routers/Posts.jsx";
+import Posts, { loader as postLoader } from "./routers/Posts.jsx";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +15,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Posts />,
+        loader: postLoader,
         children: [{ path: "/create-todo", element: <NewToDo /> }],
       },
     ],
