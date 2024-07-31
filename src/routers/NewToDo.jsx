@@ -1,19 +1,18 @@
 import classes from "./NewToDo.module.css";
 import Modal from "../components/Modal";
-import { Link } from "react-router-dom";
+import { Form, Link, redirect } from "react-router-dom";
 
 function NewToDo() {
-
   return (
     <Modal>
-      <form className={classes.form}>
+      <Form method="post" className={classes.form}>
         <p>
           <label htmlFor="day">Day</label>
-          <input type="text" id="day" required/>
+          <input type="text" id="day" name="day" required />
         </p>
         <p>
           <label htmlFor="task">Task</label>
-          <textarea id="task" required rows={3}/>
+          <textarea id="task" name="task" required rows={3} />
         </p>
         <p className={classes.actions}>
           <Link to=".." type="button">
@@ -21,9 +20,20 @@ function NewToDo() {
           </Link>
           <button>Submit</button>
         </p>
-      </form>
+      </Form>
     </Modal>
   );
 }
 
 export default NewToDo;
+
+export async function action({ request }) {
+  const formData = await request.formData();
+  const postData = Object.fromEntries(formData);
+  await fetch("http://localhost:6060/posts", {
+    method: "POST",
+    body: JSON.stringify(postData),
+    headers: { "Content-Type": "application/json" },
+  });
+  return redirect("/");
+}
