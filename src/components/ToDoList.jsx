@@ -1,22 +1,10 @@
-import { useEffect, useState } from "react";
+import { useLoaderData } from "react-router-dom";
+
 import classes from "./ToDoList.module.css";
 import PostToDo from "./PostToDo";
 
 function ToDoList() {
-  const [posts, setPosts] = useState([]);
-  const [isFetching, setIsFetching] = useState(false);
-
-  useEffect(() => {
-    async function fetchPosts() {
-      setIsFetching(true);
-      const response = await fetch("http://localhost:6060/posts");
-      const resData = await response.json();
-      console.log(resData.posts);
-      setPosts(resData.posts);
-      setIsFetching(false);
-    }
-    fetchPosts();
-  }, []);
+  const posts = useLoaderData();
 
   function addPostHandler(postData) {
     fetch("http://localhost:6060/posts", {
@@ -31,7 +19,7 @@ function ToDoList() {
 
   return (
     <>
-      {!isFetching && posts.length > 0 && (
+      {posts.length > 0 && (
         <ul className={classes.posts}>
           {posts.map((post) => (
             <PostToDo key={post.day} day={post.day} task={post.task} />
@@ -39,16 +27,10 @@ function ToDoList() {
         </ul>
       )}
 
-      {!isFetching && posts.length === 0 && (
+      {posts.length === 0 && (
         <div style={{ textAlign: "center", color: "#fff" }}>
           <h2>There are no Tasks yet</h2>
           <p>Post a New Task!</p>
-        </div>
-      )}
-
-      {isFetching && (
-        <div style={{ textAlign: "center", color: "white" }}>
-          <p>Loading To-do tasks...</p>
         </div>
       )}
     </>
