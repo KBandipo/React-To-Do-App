@@ -12,8 +12,11 @@ const router = createBrowserRouter([
     path: "/",
     element: <RootLayout />,
     children: [
-      { path: "/", element: <Posts /> },
-      { path: "/create-todo", element: <NewToDo /> },
+      {
+        path: "/",
+        element: <Posts />,
+        children: [{ path: "/create-todo", element: <NewToDo /> }],
+      },
     ],
   },
 ]);

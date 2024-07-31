@@ -1,29 +1,15 @@
-import { useState } from "react";
-import Header from "../components/Header";
+import { Outlet } from "react-router-dom";
 import ToDoList from "../components/ToDoList";
 
-function App() {
-  const [modalIsVisible, setModalIsVisible] = useState(false);
-
-  function hideModalVisiblity() {
-    setModalIsVisible(false);
-  }
-
-  function showModalVisibility() {
-    setModalIsVisible(true);
-  }
-
+function Posts() {
   return (
     <>
-      <Header onCreatePost={showModalVisibility} />
+      <Outlet />
       <main>
-        <ToDoList
-          onStopPosting={hideModalVisiblity}
-          isPosting={modalIsVisible}
-        />
+        <ToDoList />
       </main>
     </>
   );
 }
 
-export default App;
+export default Posts;
