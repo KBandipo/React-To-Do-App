@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
 import classes from "./ToDoList.module.css";
 import PostToDo from "./PostToDo";
-import NewToDo from "./NewToDo";
-import Modal from "./Modal";
 
-function ToDoList({ isPosting, onStopPosting }) {
+function ToDoList() {
   const [posts, setPosts] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
 
   useEffect(() => {
     async function fetchPosts() {
       setIsFetching(true);
-      const response = await fetch("http://localhost:8080/posts");
+      const response = await fetch("http://localhost:6060/posts");
       const resData = await response.json();
+      console.log(resData.posts);
       setPosts(resData.posts);
       setIsFetching(false);
     }
@@ -20,7 +19,7 @@ function ToDoList({ isPosting, onStopPosting }) {
   }, []);
 
   function addPostHandler(postData) {
-    fetch("http://localhost:8080/posts", {
+    fetch("http://localhost:6060/posts", {
       method: "POST",
       body: JSON.stringify(postData),
       headers: {
@@ -32,11 +31,6 @@ function ToDoList({ isPosting, onStopPosting }) {
 
   return (
     <>
-      {isPosting && (
-        <Modal onClose={onStopPosting}>
-          <NewToDo onClose={onStopPosting} onAddPost={addPostHandler} />
-        </Modal>
-      )}
       {!isFetching && posts.length > 0 && (
         <ul className={classes.posts}>
           {posts.map((post) => (
