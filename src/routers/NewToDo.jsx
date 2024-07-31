@@ -1,6 +1,7 @@
 import { useState } from "react";
 import classes from "./NewToDo.module.css";
 import Modal from "../components/Modal";
+import { Link } from "react-router-dom";
 
 function NewToDo({ onClose, onAddPost }) {
   const [taskToDo, setTaskToDo] = useState("");
@@ -33,9 +34,9 @@ function NewToDo({ onClose, onAddPost }) {
           <textarea id="task" required rows={3} onChange={taskToDoHandler} />
         </p>
         <p className={classes.actions}>
-          <button type="button" onClick={onClose}>
+          <Link to=".." type="button">
             Cancel
-          </button>
+          </Link>
           <button>Submit</button>
         </p>
       </form>
