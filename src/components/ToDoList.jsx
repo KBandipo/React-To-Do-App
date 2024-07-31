@@ -6,17 +6,6 @@ import PostToDo from "./PostToDo";
 function ToDoList() {
   const posts = useLoaderData();
 
-  function addPostHandler(postData) {
-    fetch("http://localhost:6060/posts", {
-      method: "POST",
-      body: JSON.stringify(postData),
-      headers: {
-        "content-Type": "application/json",
-      },
-    });
-    setPosts((existingPost) => [postData, ...existingPost]);
-  }
-
   return (
     <>
       {posts.length > 0 && (
